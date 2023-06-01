@@ -1,6 +1,6 @@
 #EXTM3U
 #EXT-X-VERSION:3
 #EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=705720,CODECS="avc1.4d401e,mp4a.40.2",RESOLUTION=480x360
-http://cdn-birutv.my.id/session/2a187eda-0038-11ee-a6b9-ad4b9839c271/uq2663/h/h06/02.m3u8
+https://anon.devds.site/link.m3u8?hash=aHR0cDovL2Nkbi1iaXJ1dHYubXkuaWQvc2Vzc2lvbi8yYTE4N2VkYS0wMDM4LTExZWUtYTZiOS1hZDRiOTgzOWMyNzEvdXEyNjYzL2gvaDA2LzAyLm0zdTg=
 #EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=2238329,CODECS="avc1.4d4028,mp4a.40.2",RESOLUTION=1024x576
-http://cdn-birutv.my.id/session/2a187eda-0038-11ee-a6b9-ad4b9839c271/uq2663/h/h06/01.m3u8
+https://anon.devds.site/link.m3u8?hash=aHR0cDovL2Nkbi1iaXJ1dHYubXkuaWQvc2Vzc2lvbi8yYTE4N2VkYS0wMDM4LTExZWUtYTZiOS1hZDRiOTgzOWMyNzEvdXEyNjYzL2gvaDA2LzAxLm0zdTg=
