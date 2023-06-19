@@ -1,105 +1,87 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="cache-control" content="max-age=0" />
-  <meta http-equiv="cache-control" content="no-cache" />
-  <meta http-equiv="expires" content="0" />
-  <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-  <meta http-equiv="pragma" content="no-cache" />
-  <meta name="referrer" content="no-referrer">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.1" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <meta name="robots" content="noindex" />
-
-  <script src="//cdn.bitmovin.com/player/web/8/bitmovinplayer.js"></script>
-
-<body oncontextmenu="return false;">
-  <div id="player"></div>
-</body>
-<script type="text/javascript">
-  function override(url) {
-    if (url.indexOf("licensing.bitmovin.com/licensing") > -1) return "data:text/plain;charset=utf-8;base64,eyJzdGF0dXMiOiJncmFudGVkIiwibWVzc2FnZSI6IlRoZXJlIHlvdSBnby4ifQ==";
-    if (url.indexOf("licensing.bitmovin.com/impression") > -1) return "data:text/plain;charset=utf-8;base64,eyJzdGF0dXMiOiJncmFudGVkIiwibWVzc2FnZSI6IlRoZXJlIHlvdSBnby4ifQ==";
-    return url;
-  }
-  var opens = XMLHttpRequest.prototype.open;
-  XMLHttpRequest.prototype.open = function() {
-    var url = override(arguments[1]);
-    arguments[1] = url;
-    return opens.apply(this, arguments);
-  }
-  var src = "https://anevia114.mncnow.id/live/eds/RCTI-DD/sa_dash_vmx/RCTI-DD.mpd";
-  //https://feedback.googleusercontent.com/gadgets/proxy?container=blogger&url=https://tve-live-lln.warnermediacdn.com/hls/live/2023168/tnteast/slate/VIDEO_5_864000.m3u8
-  const container = document.getElementById('player');
-  const playerConfig = {
-    key: "dbc28cb5c6426080f984a5b6d436bb30",
-    cast: {
-      enable: true,
-      style: {
-        width: "100%",
-        aspectratio: "16:9",
-        controls: true
-      }
-    },
-    network: {
-      preprocessHttpRequest: function(type, request) {
-        if (request.url.includes("dtv-latam-abc.akamaized.net")) {
-          request.url = request.url.replace("dtv-latam-abc.akamaized.net", "cors.abc-akamaized.one")
-        }
-        return Promise.resolve(request);
-      }
+  <meta name="referrer" content="never" />
+  <title>DONELFANTASTIC | RCTI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.6.12/plyr.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-  };
-  const source = {
-    dash: 'https://anevia114.mncnow.id/live/eds/RCTI-DD/sa_dash_vmx/RCTI-DD.mpd',
-    poster: '',
-    drm: {
-      clearkey: [{
-        key: 'dbc28cb5c6426080f984a5b6d436bb30',
-        kid: '9ba3e153ef8956d6e2b0684fcf74f58f'
-      }]
-    },
-  };
-  const player = new bitmovin.player.Player(container, playerConfig);
-  player.load(source).then(
-    function(value) {
-      // Success
-      console.log('Successfully created bitmovin player instance');
-    },
-    function(reason) {
-      // Error!
-      console.log('Error while creating bitmovin player instance');
-    });
+
+    body {
+      background-color: #000;
+      width: 100%;
+      --plyr-color-main: green;
+    }
+
+    .video-section {
+      padding: 0;
+      margin: 0;
+      display: block;
+      position: relative;
+      margin-bottom: 0;
+      overflow: hidden;
+    }
+
+    .video-responsive {
+      padding-bottom: 0%
+    }
+
+    #donelfantastic {
+      position: relative;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      height: 100%;
+      width: 100%;
+      border: 0;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="video-section video-responsive">
+    <video id="donelfantastic" preload="auto" controls crossorigin playsinline data-poster=""></video>
+  </div>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.6.12/plyr.min.js"></script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Array.prototype.includes,CustomEvent,Object.entries,Object.values,URL"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/2.4.0/shaka-player.compiled.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const source =
+      "https://google-ads-googlesyndicationred3-com.getplay3.workers.dev/https://av-live-cdn.mncnow.id/live/eds/MNCTV-HD/sa_dash_vmx/MNCTV-HD.mpd";
+    const video = document.querySelector("#donelfantastic");
+    const player = new Plyr(video);
+    window.player = player;
+    if (shaka.Player.isBrowserSupported()) {
+      // Install built-in polyfills
+      shaka.polyfill.installAll();
+      const shakaInstance = new shaka.Player(video);
+      //shakaInstance.configure({
+        //drm: {
+          //clearKeys: {
+            //"9ba3e153ef8956d6e2b0684fcf74f58f": "dbc28cb5c6426080f984a5b6d436bb30"
+          //}
+        //}
+      //});
+      shakaInstance.load(source);
+    } else {
+      console.warn("Browser is not supported!");
+    }
+  });
 </script>
 
-<style>
-  body {
-    margin: 0;
-    background-color: #00000;
-  }
-
-  iframe {
-    width: 100%;
-    height: 100%;
-  }
-
-  .bmpui-ui-watermark {
-    display: none;
-  }
-
-  .bmpui-ui-volumeslider .bmpui-seekbar .bmpui-seekbar-playbackposition-marker {
-    background-color: #57b230;
-  }
-
-  .bmpui-ui-seekbar .bmpui-seekbar .bmpui-seekbar-playbackposition,
-  .bmpui-ui-volumeslider .bmpui-seekbar .bmpui-seekbar-playbackposition {
-    background-color: #57b230;
-  }
-
-  .bmpui-ui-seekbar .bmpui-seekbar .bmpui-seekbar-playbackposition-marker,
-  .bmpui-ui-volumeslider .bmpui-seekbar .bmpui-seekbar-playbackposition-marker {
-    border-color: #57b230;
-    background-color: #57b230;
-  }
-  </style>
-  
+</html>
