@@ -1,5 +1,4 @@
 #EXTM3U
 #EXT-X-VERSION:3
 #EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=2000000
-http://tvt3.xyz:2095/play/live.php?mac=10:27:be:05:82:d6&stream=348099&extension=m3u8
 http://connect-uk.proxytx.cloud:80/play/live.php?mac=00:1A:79:6F:5A:5D&stream=1032527&extension=m3u8&play_token=go_ott
